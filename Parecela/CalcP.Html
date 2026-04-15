@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Parcelamento</title>
+</head>
+<body>
+
+    <h2>Calculadora de Parcelamento</h2>
+
+    <form onsubmit="calcular(); return false;">
+        <label>Preço à vista:</label><br>
+        <input type="text" id="preco"><br><br>
+
+        <label>Número de parcelas:</label><br>
+        <select id="parcelas">
+            <option value="1">1x (à vista)</option>
+            <option value="3">3x (+10%)</option>
+            <option value="5">5x (+20%)</option>
+        </select><br><br>
+
+        <button type="submit">Calcular</button>
+    </form>
+
+    <div id="resultado"></div>
+
+    <script>
+        function calcular() {
+            let preco = parseFloat(document.getElementById("preco").value);
+            let parcelas = parseInt(document.getElementById("parcelas").value);
+
+            let total = preco;
+
+            if (parcelas === 3) {
+                total = preco * 1.10;
+            } else if (parcelas === 5) {
+                total = preco * 1.20;
+            }
+
+            let valorParcela = total / parcelas;
+
+            let resultado = document.getElementById("resultado");
+
+            // Não apaga o conteúdo anterior
+            resultado.innerHTML += `
+                <p>Total a pagar: R$ ${total.toFixed(2)}</p>
+                <p>${parcelas}x de R$ ${valorParcela.toFixed(2)}</p>
+                <hr>
+            `;
+        }
+    </script>
+
+</body>
+</html>
