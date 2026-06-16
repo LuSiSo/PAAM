@@ -1,0 +1,9 @@
+th {
+  cursor: pointer;
+  padding: 10px;
+}
+
+td {
+  padding: 8px;
+  transition: background 0.3s;
+}
